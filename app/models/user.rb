@@ -12,3 +12,7 @@ class User < ApplicationRecord
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
 end
+
+  def feed_microposts
+    Micropost.where(user_id: self.following_ids + [self.id])
+  end
