@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:teru07310731] = nil
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: email)
     if @user && @user.authenticate(password)
       # ログイン成功
-      session[:user_id] = @user.id
+      session[:teru07310731] = @user.id
       return true
     else
       # ログイン失敗
