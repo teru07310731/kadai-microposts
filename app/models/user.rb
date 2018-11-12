@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverses_of_relationship, source: :user
   has_many :favorites
   has_many :favorite_microposts, through: :favorites, source: :micropost
-  
+
 
   def follow(other_user)
     unless self == other_user
@@ -30,17 +30,18 @@ class User < ApplicationRecord
 
   def following?(other_user)
     self.followings.include?(other_user)
-    end
+  end
 
   def favorite(micropost)
-    self.relationships.find_or_create_by(favorite_id: micropost.id)
+    self.favorites.find_or_create_by(micropost_id: micropost.id)
   end
 
   def unfavorite(micropost)
-    relationship = self.relationships.find_by(favorite_id: micropost.id)
+    favorite = self.microposts.find_by(micropost_id: micropost.id)
+    favorite.destroy if favorite
   end
 
   def favorite?(micropost)
-    self.favorites.include?(micropost_id)
+    self.favorite_microposts.include?(micropost)
   end
 end
