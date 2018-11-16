@@ -17,7 +17,7 @@
       Tweets
         <% end %>
       </li>
-    <li class="<%='active' if current_page?(followings_user_path(@user)) %><%= link_to followers_user_path(@user) do %>
+    <li class="<%= 'active' if current_page?(followings_user_path(@user)) %><%= link_to followers_user_path(@user) do %>
       Followings
         <% end %>
       </li>
